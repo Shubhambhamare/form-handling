@@ -1,52 +1,55 @@
-import React from 'react'
-
+import React from "react";
 
 class Form extends React.Component {
-    constructor() {
+    constructor(){
         super();
-        this.state = {  
-            name:'',
-            contact:null,
-            user : [],
-        };
+        this.state={
+            name:"",
+            contact: null,
+            user:[]
+        }
     }
-    manageChange=(e)=>{
+
+    
+
+    manageChange =  (e) => {
         this.setState({[e.target.name]:e.target.value})
     }
-    manageSubmission = (e)=>{
-        e.preventDefault();
-        const tempObj ={
-            name:this.state.name,
-            contact: this.state.contact, 
 
-        };
-        const tempArr=[this.state.user];
-        tempArr.push(tempObj)
+    manageSubmition = (e) => {
+        e.preventDefault()
+        const tempObj= {
+            name:this.state.name,
+            contact:this.state.contact
+        }
+        let tempArr=this.state.user;
+        tempArr.push(tempObj);
         this.setState({user:tempArr})
     }
-    render() {
-        return (
+
+    render (){
+        return(
             <>
                 <form>
-                    <label htmlFor='name'>Name</label>
-                    <input type="text" name='name' onChange={(e)=>this.manageChange(e)} id='name' value={this.state.name}/>
+                    <label htmlFor="name">Name</label>
+                    <input type="text" name="name" onChange={(e)=>this.manageChange(e)} id="name" value={this.state.name} />
+
                     <label htmlFor="contact">Contact</label>
-                    <input type="number" name='contact' onChange={(e)=>this.manageChange(e)} id='contact' value={"this.state.contact"}>Contact</input>
-                    <button onClick={(event)=>this.manageSubmission(event)}>Submit</button>
+                    <input type="number" name="contact" onChange={(e)=>this.manageChange(e)} id="contact" value={this.state.contact} />
+
+                    <button onClick={(event)=>this.manageSubmition(event)}>Sumit</button>
                 </form>
-                
-                    {this.state.user.map((value, index)=>{
-                        return(
-                            <div>
-                                {value.name} | {value.contact}
-                            </div>
-                        )
-                    })}
-            
-                
+
+                {this.state.user.map((value, index)=>{
+                    return(
+                        <div>
+                        {value.name} | {value.contact}
+                        </div>
+                    )
+                })}
             </>
-        );
+        )
     }
 }
 
-export default Form;
+export default Form
